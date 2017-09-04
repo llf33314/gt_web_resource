@@ -1,4 +1,3 @@
-# gt_web_resource
-## develop
+# develop
 
 开发版资源存放
