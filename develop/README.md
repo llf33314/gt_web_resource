@@ -1,3 +1,4 @@
 # gt_web_resource
+## develop
 
-多粉前端资源
+开发版资源存放
