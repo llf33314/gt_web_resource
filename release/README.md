@@ -1,3 +1,3 @@
-# gt_web_resource
+# release
 
-多粉前端资源
+发布版资源存放
