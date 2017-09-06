@@ -7,17 +7,19 @@
  */
 
 html {
-    font-family: "微软雅黑";
     /* 1 */
     -ms-text-size-adjust: 100%;
     /* 2 */
     -webkit-text-size-adjust: 100%;
     /* 2 */
+    font-family:"Microsoft Yahei", "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB",-apple-system, BlinkMacSystemFont, "PingFang SC","Helvetica Neue",STHeiti,"微软雅黑",Tahoma,Simsun,sans-serif;
 }
 
 body, html {
     height: 100%;
     -webkit-tap-highlight-color: transparent;
+    min-width: 1100px;
+    overflow-x: auto;
 }
 /**
  * Remove the margin in all browsers (opinionated).
