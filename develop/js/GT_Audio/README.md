@@ -4,7 +4,6 @@
 1. 在head标签中导入组件依赖库:
 ```
 <link rel="stylesheet" type="text/css" href="GT_Audio/GT_Audio.min.css" />
-<script src="GT_Audio/jquery-2.2.2.min.js"></script>
 <script src="GT_Audio/GT_Audio.min.js"></script>
 ```
 
@@ -15,12 +14,10 @@
 
 3. 在script标签中初始化组件:
 ```
-<script>
     $(function() {
         var audio = new GT_Audio("audio");
         audio.init();
     });
-</script>
 ```
 
 如需多个实例，可参考[demo.html](http://git.duofee.com/dj/GT_AudioJS/src/master/demo.html)。
