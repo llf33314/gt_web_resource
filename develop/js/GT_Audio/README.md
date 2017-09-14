@@ -14,10 +14,18 @@
 
 3. 在script标签中初始化组件:
 ```
-    $(function() {
-        var audio = new GT_Audio("audio");
-        audio.init();
-    });
+<script type="text/javascript">
+    window.onload = function() {
+        var audio1 = new GT_Audio("audio1");
+        audio1.init();
+
+        var audio2 = new GT_Audio("audio2");
+        audio2.init();
+
+        var audio3 = new GT_Audio("audio3");
+        audio3.init();
+    };
+</script>
 ```
 
 如需多个实例，可参考[demo.html](http://git.duofee.com/dj/GT_AudioJS/src/master/demo.html)。
