@@ -1,6 +1,8 @@
 <template>
   <div class="gt_audio">
-    <div class="audioPlayer"><audio :src="audioSrc" @play="play($event)" @pause="pause($event)" @ended="ended($event)" ></audio><div class="audioButton">
+    <div class="audioPlayer">
+        <div class="audioDisabled"></div>
+        <audio :src="audioSrc" @play="play($event)" @pause="pause($event)" @ended="ended($event)" @canplaythrough="audioThrough($event)" ></audio><div class="audioButton">
         <img v-on:click="audioPlay($event)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABW0lEQVRYR+2WwU3DMBiF328GYI6KZbiCixRPQLpBskG6AZWAc9ggbNAe0vQYNmgPzSFV/aNSaKBSieM6CQd8jv2+PL3324SeF/Wsj78PMHjma6Fxz4SkKDHOFS1dulbrwNUT7wQvP0QZSy2gsluKXUGYAPCxGANxUUK5cMMK4OAGIcgkjc9xwx7gS5WRbC+gFjeU24CcD/CpykAwlxQ2hXAGsM8oplpjtLijxBTEKcBBlBGtNwhNQtoOwN6NnAmjusq2BlBl9PfKtg5QV9luAKqmPMwlqe8B7RRgJ5xK+qHZLQBjkg7J68OBlWYE2ZCi4/nQugMMvGgB/9SobhNgpQleP3OAMVlv4Hc+CRl40xpeL3cBA2FRIjL5a7ctYMxA8FJJU9Mb0BXAyWo1AbFtwetWwLN9BTV1oHoVA0bVcurA4JF9QQjAiE2r5RSgyWE239ZmwObQJnv+Ad4Byr7EIY/gRmUAAAAASUVORK5CYII=">
     </div><section class="audioProgressBar" v-on:click="audioSkip($event)"><div class="audioProgress"><div class="audioSpeed"></div></div><div class="audioIconDiv">
         <img class="audioIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAACyElEQVRIib2Wz2sTQRTHP7v50aapuoI/KGpBRCoIBUNBqZBLz+lBFA85eezFozm09CL0oP4BXtNjD0LB9uDJ2JOHNiDYoqXQxdaGkkMMTbPJTnY9ZEYnMYnbRnww7OTHvM9833vzdgyCmdH2VOZ3mXd18DfnBmBqc925D3javCewE8QEwsDA9PT0Gdu2U5VK5XW9Xn/vum7ecZx35XL5xebmZhKIAVH5f7WhQJCQXBizbfuREGLH72H1ev3j+vr6PQmMBIEpyAAQL5VKL33f93pBlHmeV9nd3U0DQ3KToW4wXcnw/v7+syCANhNbW1sPNFhHZaaUHV9eXp7wPM89BcgXQhQymcyoFsYWkFIzCFilUunNaSDK9vb2ngPnZApaQqjUDKdSqVHP8477ATmO8wW4AMTbVZlKTS6Xe9wPRNnMzMwYcFblytRCZwJhy7Ku9SrLoDY5OTkqw2YChn7aTcAUQpg91gc213VNDYSuCMAoFAqH/wK0srJySIeKiwDDwOVEIjHeaDSq/eSnUqnsADeAizTPVEgpUo3Q39jYOC4UCrl+1Gxvb7/ld6MFmjFUqkI0m2IkEol8m5qaemgYxonzVavViul0eta27R+AA7gSCmjlDVwFbq+trb06acg8z2ssLi4+BW4BI2jlrYOiNPN0iWZ87+Tz+awfsKkKIapLS0uzwDhwnS4HtqUFAVeAMWAim81mjo6OvveCFIvFz3Nzc0+ABHBTqmlpQXr5qbqPSuCQ3FHcsqz4wsLC3WQyed+yrJFYLHbecZzywcHB19XV1Q/z8/OfgCpQkeNY5kfI4esgowNskGYXjsnd6S81H2gAdaAmHVflaIEAflgDqXc/slKQjoR0Fu0CcjVYTc6F/O3XHaLTG1BXFpLOw9pTP3uetnNXm7dAuoHU9zpQB+trPDkacqjPf9yG/tt1K9C1qA2qW+AL5E9dShbfB+cqswAAAABJRU5ErkJggg==">
@@ -67,6 +69,11 @@ export default {
           ado.play()
         }
     },
+    //加载完成
+    audioThrough(evt) {
+        let _self = evt.target;
+        _self.parentNode.getElementsByClassName("audioDisabled")[0].style.display = "none";
+    },
     //跳转进度条
     audioSkip(evt) {
         let e = event || window.event;
@@ -102,6 +109,20 @@ function timeFormat(time) {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style type="text/css">
+.gt_audio{
+    display: inline-block;
+}
+
+.audioDisabled {
+    position: absolute;
+    width: 300px;
+    height: 36px;
+    background: #fff;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    z-index: 5;
+}
+
 .audioPlayer {
     width: 300px;
     height: 36px;
@@ -168,5 +189,6 @@ function timeFormat(time) {
     text-align: center;
     vertical-align: middle;
     color: #999;
+    font-size: 15px;
 }
 </style>
