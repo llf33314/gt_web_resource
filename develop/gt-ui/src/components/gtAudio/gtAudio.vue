@@ -11,7 +11,7 @@
 var timerCurrent;
 export default {
   props: {
-    url: String
+    src: String
   },
   data() {
     return {
@@ -19,7 +19,7 @@ export default {
     }
   },
   mounted() {
-    this.audioSrc = this.url
+    this.audioSrc = this.src
   },
   methods: {
     //播放事件
@@ -54,8 +54,6 @@ export default {
     },
     //开始播放
     audioPlay(evt) {
-        console.log(JSON.parse(localStorage.getItem('url')));
-
         let ado = evt.target.parentNode.previousSibling
         let adoList = document.getElementsByTagName("audio")
         let playImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABW0lEQVRYR+2WwU3DMBiF328GYI6KZbiCixRPQLpBskG6AZWAc9ggbNAe0vQYNmgPzSFV/aNSaKBSieM6CQd8jv2+PL3324SeF/Wsj78PMHjma6Fxz4SkKDHOFS1dulbrwNUT7wQvP0QZSy2gsluKXUGYAPCxGANxUUK5cMMK4OAGIcgkjc9xwx7gS5WRbC+gFjeU24CcD/CpykAwlxQ2hXAGsM8oplpjtLijxBTEKcBBlBGtNwhNQtoOwN6NnAmjusq2BlBl9PfKtg5QV9luAKqmPMwlqe8B7RRgJ5xK+qHZLQBjkg7J68OBlWYE2ZCi4/nQugMMvGgB/9SobhNgpQleP3OAMVlv4Hc+CRl40xpeL3cBA2FRIjL5a7ctYMxA8FJJU9Mb0BXAyWo1AbFtwetWwLN9BTV1oHoVA0bVcurA4JF9QQjAiE2r5RSgyWE239ZmwObQJnv+Ad4Byr7EIY/gRmUAAAAASUVORK5CYII=';
@@ -73,11 +71,6 @@ export default {
     audioSkip(evt) {
         let e = event || window.event;
         let ado = evt.target.parentNode.parentNode.parentNode.getElementsByTagName("audio")[0];
-
-        // if(typeof ado == 'undefined') {
-        //   ado = evt.target.parentNode.parentNode.parentNode.getElementsByTagName("audio")[0];
-        // }
-
         let pbWidth = evt.target.offsetWidth;
         let speed = e.offsetX - ado.parentNode.getElementsByClassName("audioIcon")[0].offsetWidth / 2;
         let scale = (speed / pbWidth + 0.05).toFixed(2);
@@ -120,9 +113,9 @@ function timeFormat(time) {
     justify-content: center;
     margin: 10px 0;
     user-select: none;
-    -webkit-user-select: none; /* Chrome/Safari/Opera */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .audioPlayer .audioButton {
