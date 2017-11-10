@@ -1,6 +1,6 @@
 # gt.js
 
-### vue-cli 使用方法：
+### vue-cli 全局应用：
 
 ```
  
@@ -11,7 +11,7 @@
     <button @click="$gt.fn()">gt</button>
 
 ```
-### html引用
+### html应用：
 
 ```
     ~ html:
@@ -19,5 +19,28 @@
 
     ~ script:
     gt.fn()
+
+```
+
+### vue 组件应用：
+
+```
+    ~ vue
+    <button onclick="gt.abc('我是window的方法')">test</button>
+    <button @click="fn.abc('我是vue的方法')">test</button>
+    
+    ~ script
+    require('./../../../assets/js/gt.js')
+    export default {
+        data() {
+            return {
+                test: 'test',
+                fn:{}
+            }
+        },
+        mounted () {
+            this.fn = gt
+        }
+    } 
 
 ```
