@@ -82,7 +82,7 @@
    */
   gt.mobilePhone = function (obj) {
     var isPhone = /^((\+?86)|(\(\+86\)))?(13[0123456789][0-9]{8}|15[0123456789][0-9]{8}|17[0123456789][0-9]{8}|18[0123456789][0-9]{8}|147[0-9]{8}|1349[0-9]{7})$/;
-    return isPhone.test(obj) ? true : false
+    return isPhone.test(obj)
   }
   /**
    * @desc 固话验证
@@ -91,7 +91,7 @@
    */
   gt.fixedTelephone = function (obj) {
     var isfixed = /^([0-9]{3,4})?[0-9]{7,8}$/;
-    return isfixed.test(obj) ? true : false
+    return isfixed.test(obj)
   }
   /**
    * @desc 固话+手机验证
@@ -110,7 +110,7 @@
    */
   gt.isPrice = function (val) {
     var res = /^[0-9]+(.[0-9]{1,2})?$/;
-    return res.test(val) ? true : false
+    return res.test(val)
   }
   /**
    * @desc 去除空格
@@ -134,4 +134,83 @@
     }
     return r;
   }
+  /**
+   * @desc 车牌号码验证 ,大小写不区分
+   * @param { String value }  
+   * @return  { Boolean }
+   */
+  gt.isCarNo = function (value) {
+    var reg = /^[\u4e00-\u9fa5]{1}[a-zA-Z]{1}[a-zA-Z_0-9]{4}[a-zA-Z_0-9_\u4e00-\u9fa5]$|^[a-zA-Z]{2}\d{7}$ /;
+    return reg.test(value);
+  }
+  /**
+   * @desc 闭区间  获取随机数
+   * @param { min, max }  
+   * @return  { Number }
+   */
+  gt.getRandom = function (min, max) {
+    return Math.round(Math.random() * (max - min + 1) + min, 10);
+  }
+  /**
+   * @desc 判断网页是否在微信浏览器打开
+   * @param { }  
+   * @return  { Boolean }
+   */
+  gt.isWeChat = function () {
+    return navigator.userAgent.toLowerCase().match(/MicroMessenger/i) === "micromessenger";
+  }
+  /**
+   * @desc 判断手机系统  Apple
+   * @param { }  
+   * @return  { Boolean }
+   */
+  gt.isApple = function () {
+    return /ip(hone|ad|od)/i.test(navigator.userAgent.toLowerCase());
+  }
+  /**
+   * @desc 判断手机系统  Android
+   * @param { }  
+   * @return  { Boolean }
+   */
+  gt.isAndroid = function () {
+    return /android/i.test(navigator.userAgent.toLowerCase());
+  }
+  /**
+   * @desc js仿照md5
+   * @param { }  
+   * @return  { Number }
+   */
+  gt.md5 = function () { 
+    var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+    return str.split('').sort(function (v1, v2) {
+      return Math.random() > 0.5;
+    }).join('').slice(0, 32);
+  }
+   /**
+   * @desc 获取星期几
+   * @param { }  
+   * @return  { week }
+   */
+  gt.getDay = function () {
+    var arr = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+    return arr[new Date().getDay()];
+  }
+  /**
+   * @desc 对象转为url字符串形式
+   * @param { Obje}  
+   * @return  { String }
+   */
+  gt.urlJsonLsit = function (obj) {
+    return Object.keys(obj).map(function (k) {
+      return encodeURIComponent(k) + "=" + encodeURIComponent(obj[k]);
+    }).join('&');
+  }
+  /**
+   * @desc 是否包含字符串
+   * @param { str, substr}  
+   * @return  { Boolean }
+   */
+  gt.isContains = function (str, substr) {
+    return new RegExp(substr).test(str);
+  };
 })

@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    <button onclick="gt.abc(55)">ss</button>
     <script src="gt.js"></script>
     <script>
-        console.log({
-            mobilePhone:gt.mobilePhone(15902042654),
-            fixedTelephone:gt.fixedTelephone('07527496588'),
-            phone:gt.phone('07527496588')
-        })
+        var obj = {
+            mobilePhone: gt.mobilePhone(1590206642654),
+            fixedTelephone: gt.fixedTelephone('07527496588'),
+            phone: gt.phone('07527496588'),
+            getDay: gt.getDay()
+        }
+        window.onload = function () {
+            document.body.innerText = JSON.stringify(obj)
+        }
+        console.log(obj)
     </script>
 </body>
+
 </html>
